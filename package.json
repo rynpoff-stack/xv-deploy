@@ -1,0 +1,24 @@
+{
+  "name": "xv-deploy",
+  "version": "1.0.0",
+  "description": "xv-deploy — деплой проекта в один клик",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "xv",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.xv.deploy",
+    "productName": "xv-deploy",
+    "files": ["main.js", "preload.js", "services.js", "renderer/**/*"],
+    "win": { "target": "nsis" },
+    "mac": { "target": "dmg" },
+    "linux": { "target": "AppImage" }
+  }
+}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>xv-deploy</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="snow"></canvas>
+
+  <div class="app">
+    <header>
+      <div class="logo">xv<span>/</span>deploy</div>
+      <div class="status" id="status"><i></i><b>готов</b></div>
+    </header>
+
+    <main class="stage">
+      <h1>Куда деплоим?</h1>
+      <p class="sub">Выбери папку проекта и сервис</p>
+
+      <button class="project" id="pick" type="button">
+        <span class="p-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        </span>
+        <span class="p-text">
+          <b id="pname">Выбрать папку проекта</b>
+          <small id="path">Нажми, чтобы открыть проводник</small>
+        </span>
+        <span class="p-tag" id="ptag" hidden></span>
+      </button>
+
+      <div class="services" id="services"></div>
+
+      <div class="profiles" id="profiles" hidden></div>
+
+      <details class="adv">
+        <summary>Настройки сборки</summary>
+        <div class="fields">
+          <label class="field">
+            <span>Команда сборки</span>
+            <input id="build" placeholder="npm run build" spellcheck="false" />
+          </label>
+          <label class="field">
+            <span>Папка с результатом</span>
+            <input id="outdir" placeholder="dist" spellcheck="false" />
+          </label>
+        </div>
+      </details>
+
+      <div class="actions">
+        <button class="deploy" id="deploy" type="button" disabled>
+          <span>Деплой</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <button class="stop" id="cancel" type="button" hidden>Стоп</button>
+      </div>
+
+      <section class="console" id="console" hidden>
+        <div class="c-bar">
+          <span>лог</span>
+          <button class="link" id="clear" type="button">очистить</button>
+        </div>
+        <pre class="log" id="log"></pre>
+        <div class="result" id="result" hidden></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="sheet">
+      <h3 id="m-title">Профиль</h3>
+      <label class="field">
+        <span>Название профиля</span>
+        <input id="m-name" placeholder="Личный, Работа…" spellcheck="false" />
+      </label>
+      <div class="m-fields" id="m-fields"></div>
+      <p class="m-note">Данные хранятся только на этом компьютере. Токены не показываются после сохранения.</p>
+      <div class="m-actions">
+        <button class="stop danger" id="m-delete" type="button" hidden>Удалить</button>
+        <span class="grow"></span>
+        <button class="stop" id="m-cancel" type="button">Отмена</button>
+        <button class="deploy small" id="m-save" type="button">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="snow.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>
